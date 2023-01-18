@@ -1041,6 +1041,14 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
+/* PyIntBinop.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, int inplace, int zerodivision_check);
+#else
+#define __Pyx_PyInt_AddObjC(op1, op2, intval, inplace, zerodivision_check)\
+    (inplace ? PyNumber_InPlaceAdd(op1, op2) : PyNumber_Add(op1, op2))
+#endif
+
 /* PyObjectCall.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
@@ -1176,13 +1184,15 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'cython' */
 
 /* Module declarations from 'cyfact' */
-static int __pyx_f_6cyfact_cyfact_cfunc(int); /*proto*/
+static int __pyx_f_6cyfact_cfunc_factorial(int); /*proto*/
 #define __Pyx_MODULE_NAME "cyfact"
 extern int __pyx_module_is_main_cyfact;
 int __pyx_module_is_main_cyfact = 0;
 
 /* Implementation of 'cyfact' */
 static PyObject *__pyx_builtin_range;
+static const char __pyx_k_i[] = "i";
+static const char __pyx_k_ans[] = "ans";
 static const char __pyx_k_inp[] = "inp";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -1190,62 +1200,87 @@ static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_cyfact[] = "cyfact";
 static const char __pyx_k_cyfact_py[] = "cyfact.py";
+static const char __pyx_k_cython_factorial[] = "cython_factorial";
+static const char __pyx_k_python_factorial[] = "python_factorial";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static PyObject *__pyx_n_s_ans;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_cyfact;
 static PyObject *__pyx_kp_s_cyfact_py;
+static PyObject *__pyx_n_s_cython_factorial;
+static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_inp;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
+static PyObject *__pyx_n_s_python_factorial;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_pf_6cyfact_cyfact(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp); /* proto */
+static PyObject *__pyx_pf_6cyfact_python_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp); /* proto */
+static PyObject *__pyx_pf_6cyfact_2cython_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp); /* proto */
+static PyObject *__pyx_int_1;
+static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_3;
 static PyObject *__pyx_tuple_;
+static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_codeobj__2;
+static PyObject *__pyx_codeobj__4;
 /* Late includes */
 
-/* "cyfact.py":14
+/* "cyfact.py":13
  * 
- * @cython.cfunc
- * def cyfact_cfunc(inp: cython.int) -> cython.int:             # <<<<<<<<<<<<<<
- *     ans: cython.int = 2
  * 
+ * def python_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Python factorial function to be run in interpreter."""
+ *     ans = 2
  */
 
-static int __pyx_f_6cyfact_cyfact_cfunc(int __pyx_v_inp) {
-  int __pyx_v_ans;
+/* Python wrapper */
+static PyObject *__pyx_pw_6cyfact_1python_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
+static char __pyx_doc_6cyfact_python_factorial[] = "Python factorial function to be run in interpreter.";
+static PyMethodDef __pyx_mdef_6cyfact_1python_factorial = {"python_factorial", (PyCFunction)__pyx_pw_6cyfact_1python_factorial, METH_O, __pyx_doc_6cyfact_python_factorial};
+static PyObject *__pyx_pw_6cyfact_1python_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("python_factorial (wrapper)", 0);
+  __pyx_r = __pyx_pf_6cyfact_python_factorial(__pyx_self, ((PyObject *)__pyx_v_inp));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6cyfact_python_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+  PyObject *__pyx_v_ans = NULL;
   PyObject *__pyx_v_i = NULL;
-  int __pyx_r;
+  PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   Py_ssize_t __pyx_t_3;
   PyObject *(*__pyx_t_4)(PyObject *);
-  PyObject *__pyx_t_5 = NULL;
-  int __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cyfact_cfunc", 0);
+  __Pyx_RefNannySetupContext("python_factorial", 0);
 
   /* "cyfact.py":15
- * @cython.cfunc
- * def cyfact_cfunc(inp: cython.int) -> cython.int:
- *     ans: cython.int = 2             # <<<<<<<<<<<<<<
+ * def python_factorial(inp):
+ *     """Python factorial function to be run in interpreter."""
+ *     ans = 2             # <<<<<<<<<<<<<<
  * 
  *     for i in range(3, inp+1):
  */
-  __pyx_v_ans = 2;
+  __Pyx_INCREF(__pyx_int_2);
+  __pyx_v_ans = __pyx_int_2;
 
   /* "cyfact.py":17
- *     ans: cython.int = 2
+ *     ans = 2
  * 
  *     for i in range(3, inp+1):             # <<<<<<<<<<<<<<
  *         ans = ans * i
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_inp + 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_inp, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1308,17 +1343,13 @@ static int __pyx_f_6cyfact_cyfact_cfunc(int __pyx_v_inp) {
  * 
  *     return ans
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_ans); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_v_ans, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 18, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_v_ans = __pyx_t_6;
+    __Pyx_DECREF_SET(__pyx_v_ans, __pyx_t_1);
+    __pyx_t_1 = 0;
 
     /* "cyfact.py":17
- *     ans: cython.int = 2
+ *     ans = 2
  * 
  *     for i in range(3, inp+1):             # <<<<<<<<<<<<<<
  *         ans = ans * i
@@ -1334,15 +1365,171 @@ static int __pyx_f_6cyfact_cyfact_cfunc(int __pyx_v_inp) {
  * 
  * 
  */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_ans);
   __pyx_r = __pyx_v_ans;
   goto __pyx_L0;
 
-  /* "cyfact.py":14
+  /* "cyfact.py":13
+ * 
+ * 
+ * def python_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Python factorial function to be run in interpreter."""
+ *     ans = 2
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("cyfact.python_factorial", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_ans);
+  __Pyx_XDECREF(__pyx_v_i);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cyfact.py":24
  * 
  * @cython.cfunc
- * def cyfact_cfunc(inp: cython.int) -> cython.int:             # <<<<<<<<<<<<<<
+ * def cfunc_factorial(inp: cython.int) -> cython.int:             # <<<<<<<<<<<<<<
+ *     """Cython factorial function to be compiled."""
+ *     ans: cython.int = 2
+ */
+
+static int __pyx_f_6cyfact_cfunc_factorial(int __pyx_v_inp) {
+  int __pyx_v_ans;
+  PyObject *__pyx_v_i = NULL;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  Py_ssize_t __pyx_t_3;
+  PyObject *(*__pyx_t_4)(PyObject *);
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("cfunc_factorial", 0);
+
+  /* "cyfact.py":26
+ * def cfunc_factorial(inp: cython.int) -> cython.int:
+ *     """Cython factorial function to be compiled."""
+ *     ans: cython.int = 2             # <<<<<<<<<<<<<<
+ * 
+ *     for i in range(3, inp+1):
+ */
+  __pyx_v_ans = 2;
+
+  /* "cyfact.py":28
  *     ans: cython.int = 2
  * 
+ *     for i in range(3, inp+1):             # <<<<<<<<<<<<<<
+ *         ans = ans * i
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_inp + 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_int_3);
+  __Pyx_GIVEREF(__pyx_int_3);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_int_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
+    __pyx_t_4 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_4)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 28, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 28, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 28, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cyfact.py":29
+ * 
+ *     for i in range(3, inp+1):
+ *         ans = ans * i             # <<<<<<<<<<<<<<
+ * 
+ *     return ans
+ */
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_ans); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_i); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_v_ans = __pyx_t_6;
+
+    /* "cyfact.py":28
+ *     ans: cython.int = 2
+ * 
+ *     for i in range(3, inp+1):             # <<<<<<<<<<<<<<
+ *         ans = ans * i
+ * 
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cyfact.py":31
+ *         ans = ans * i
+ * 
+ *     return ans             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_r = __pyx_v_ans;
+  goto __pyx_L0;
+
+  /* "cyfact.py":24
+ * 
+ * @cython.cfunc
+ * def cfunc_factorial(inp: cython.int) -> cython.int:             # <<<<<<<<<<<<<<
+ *     """Cython factorial function to be compiled."""
+ *     ans: cython.int = 2
  */
 
   /* function exit code */
@@ -1350,7 +1537,7 @@ static int __pyx_f_6cyfact_cyfact_cfunc(int __pyx_v_inp) {
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("cyfact.cyfact_cfunc", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cyfact.cfunc_factorial", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_i);
@@ -1358,28 +1545,30 @@ static int __pyx_f_6cyfact_cyfact_cfunc(int __pyx_v_inp) {
   return __pyx_r;
 }
 
-/* "cyfact.py":23
+/* "cyfact.py":34
  * 
  * 
- * def cyfact(inp):             # <<<<<<<<<<<<<<
- *     return cyfact_cfunc(inp)
+ * def cython_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Enable calls to compiled function."""
+ *     return cfunc_factorial(inp)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cyfact_1cyfact(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
-static PyMethodDef __pyx_mdef_6cyfact_1cyfact = {"cyfact", (PyCFunction)__pyx_pw_6cyfact_1cyfact, METH_O, 0};
-static PyObject *__pyx_pw_6cyfact_1cyfact(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+static PyObject *__pyx_pw_6cyfact_3cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
+static char __pyx_doc_6cyfact_2cython_factorial[] = "Enable calls to compiled function.";
+static PyMethodDef __pyx_mdef_6cyfact_3cython_factorial = {"cython_factorial", (PyCFunction)__pyx_pw_6cyfact_3cython_factorial, METH_O, __pyx_doc_6cyfact_2cython_factorial};
+static PyObject *__pyx_pw_6cyfact_3cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cyfact (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cyfact_cyfact(__pyx_self, ((PyObject *)__pyx_v_inp));
+  __Pyx_RefNannySetupContext("cython_factorial (wrapper)", 0);
+  __pyx_r = __pyx_pf_6cyfact_2cython_factorial(__pyx_self, ((PyObject *)__pyx_v_inp));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cyfact_cyfact(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+static PyObject *__pyx_pf_6cyfact_2cython_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -1388,33 +1577,34 @@ static PyObject *__pyx_pf_6cyfact_cyfact(CYTHON_UNUSED PyObject *__pyx_self, PyO
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cyfact", 0);
+  __Pyx_RefNannySetupContext("cython_factorial", 0);
 
-  /* "cyfact.py":24
- * 
- * def cyfact(inp):
- *     return cyfact_cfunc(inp)             # <<<<<<<<<<<<<<
+  /* "cyfact.py":36
+ * def cython_factorial(inp):
+ *     """Enable calls to compiled function."""
+ *     return cfunc_factorial(inp)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_inp); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
-  __pyx_t_2 = __pyx_f_6cyfact_cyfact_cfunc(__pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_inp); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_6cyfact_cfunc_factorial(__pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cyfact.py":23
+  /* "cyfact.py":34
  * 
  * 
- * def cyfact(inp):             # <<<<<<<<<<<<<<
- *     return cyfact_cfunc(inp)
+ * def cython_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Enable calls to compiled function."""
+ *     return cfunc_factorial(inp)
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cyfact.cyfact", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cyfact.cython_factorial", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1468,12 +1658,16 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_n_s_ans, __pyx_k_ans, sizeof(__pyx_k_ans), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_cyfact, __pyx_k_cyfact, sizeof(__pyx_k_cyfact), 0, 0, 1, 1},
   {&__pyx_kp_s_cyfact_py, __pyx_k_cyfact_py, sizeof(__pyx_k_cyfact_py), 0, 0, 1, 0},
+  {&__pyx_n_s_cython_factorial, __pyx_k_cython_factorial, sizeof(__pyx_k_cython_factorial), 0, 0, 1, 1},
+  {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_inp, __pyx_k_inp, sizeof(__pyx_k_inp), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
+  {&__pyx_n_s_python_factorial, __pyx_k_python_factorial, sizeof(__pyx_k_python_factorial), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
@@ -1489,16 +1683,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cyfact.py":23
+  /* "cyfact.py":13
  * 
  * 
- * def cyfact(inp):             # <<<<<<<<<<<<<<
- *     return cyfact_cfunc(inp)
+ * def python_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Python factorial function to be run in interpreter."""
+ *     ans = 2
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_inp); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(3, __pyx_n_s_inp, __pyx_n_s_ans, __pyx_n_s_i); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cyfact_py, __pyx_n_s_cyfact, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cyfact_py, __pyx_n_s_python_factorial, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 13, __pyx_L1_error)
+
+  /* "cyfact.py":34
+ * 
+ * 
+ * def cython_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Enable calls to compiled function."""
+ *     return cfunc_factorial(inp)
+ */
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_inp); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cyfact_py, __pyx_n_s_cython_factorial, 34, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -1508,6 +1715,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_3 = PyInt_FromLong(3); if (unlikely(!__pyx_int_3)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -1778,15 +1987,28 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cyfact.py":23
+  /* "cyfact.py":13
  * 
  * 
- * def cyfact(inp):             # <<<<<<<<<<<<<<
- *     return cyfact_cfunc(inp)
+ * def python_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Python factorial function to be run in interpreter."""
+ *     ans = 2
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6cyfact_1cyfact, NULL, __pyx_n_s_cyfact); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6cyfact_1python_factorial, NULL, __pyx_n_s_cyfact); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cyfact, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_python_factorial, __pyx_t_1) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "cyfact.py":34
+ * 
+ * 
+ * def cython_factorial(inp):             # <<<<<<<<<<<<<<
+ *     """Enable calls to compiled function."""
+ *     return cfunc_factorial(inp)
+ */
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_6cyfact_3cython_factorial, NULL, __pyx_n_s_cyfact); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cython_factorial, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "cyfact.py":1
@@ -1868,6 +2090,130 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     }
     return result;
 }
+
+/* PyIntBinop */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, int inplace, int zerodivision_check) {
+    (void)inplace;
+    (void)zerodivision_check;
+    #if PY_MAJOR_VERSION < 3
+    if (likely(PyInt_CheckExact(op1))) {
+        const long b = intval;
+        long x;
+        long a = PyInt_AS_LONG(op1);
+            x = (long)((unsigned long)a + b);
+            if (likely((x^a) >= 0 || (x^b) >= 0))
+                return PyInt_FromLong(x);
+            return PyLong_Type.tp_as_number->nb_add(op1, op2);
+    }
+    #endif
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        const long b = intval;
+        long a, x;
+#ifdef HAVE_LONG_LONG
+        const PY_LONG_LONG llb = intval;
+        PY_LONG_LONG lla, llx;
+#endif
+        const digit* digits = ((PyLongObject*)op1)->ob_digit;
+        const Py_ssize_t size = Py_SIZE(op1);
+        if (likely(__Pyx_sst_abs(size) <= 1)) {
+            a = likely(size) ? digits[0] : 0;
+            if (size == -1) a = -a;
+        } else {
+            switch (size) {
+                case -2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 2:
+                    if (8 * sizeof(long) - 1 > 2 * PyLong_SHIFT) {
+                        a = (long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 3:
+                    if (8 * sizeof(long) - 1 > 3 * PyLong_SHIFT) {
+                        a = (long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case -4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = -(PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                case 4:
+                    if (8 * sizeof(long) - 1 > 4 * PyLong_SHIFT) {
+                        a = (long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0]));
+                        break;
+#ifdef HAVE_LONG_LONG
+                    } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
+                        lla = (PY_LONG_LONG) (((((((((unsigned PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (unsigned PY_LONG_LONG)digits[0]));
+                        goto long_long;
+#endif
+                    }
+                    CYTHON_FALLTHROUGH;
+                default: return PyLong_Type.tp_as_number->nb_add(op1, op2);
+            }
+        }
+                x = a + b;
+            return PyLong_FromLong(x);
+#ifdef HAVE_LONG_LONG
+        long_long:
+                llx = lla + llb;
+            return PyLong_FromLongLong(llx);
+#endif
+        
+        
+    }
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = PyFloat_AS_DOUBLE(op1);
+            double result;
+            PyFPE_START_PROTECT("add", return NULL)
+            result = ((double)a) + (double)b;
+            PyFPE_END_PROTECT(result)
+            return PyFloat_FromDouble(result);
+    }
+    return (inplace ? PyNumber_InPlaceAdd : PyNumber_Add)(op1, op2);
+}
+#endif
 
 /* PyObjectCall */
 #if CYTHON_COMPILING_IN_CPYTHON
