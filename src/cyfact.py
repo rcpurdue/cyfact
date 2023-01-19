@@ -11,22 +11,23 @@ import cython
 
 
 def python_factorial(inp):
-    """Python factorial function to be run in interpreter."""
+    """Python factorial without Cython decorators"""
     ans = 2
 
     for i in range(3, inp+1):
-        ans = ans * i
+        ans *= i
 
     return ans
 
 
 @cython.cfunc
 def cfunc_factorial(inp: cython.int) -> cython.int:
-    """Cython factorial function to be compiled."""
+    """Cython factorial"""
     ans: cython.int = 2
+    i: cython.int
 
     for i in range(3, inp+1):
-        ans = ans * i
+        ans *= i
 
     return ans
 
