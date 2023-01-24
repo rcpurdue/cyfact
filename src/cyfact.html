@@ -310,7 +310,7 @@ body.cython { font-family: courier; font-size: 12; }
 <pre class="cython line score-19" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">13</span>: def python_factorial(inp):</pre>
 <pre class='cython code score-19 '>/* Python wrapper */
 static PyObject *__pyx_pw_6cyfact_1python_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
-static char __pyx_doc_6cyfact_python_factorial[] = "Python factorial function to be run in interpreter.";
+static char __pyx_doc_6cyfact_python_factorial[] = "Just compiling normal Python";
 static PyMethodDef __pyx_mdef_6cyfact_1python_factorial = {"python_factorial", (PyCFunction)__pyx_pw_6cyfact_1python_factorial, METH_O, __pyx_doc_6cyfact_python_factorial};
 static PyObject *__pyx_pw_6cyfact_1python_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
   PyObject *__pyx_r = 0;
@@ -353,7 +353,7 @@ static PyObject *__pyx_pf_6cyfact_python_factorial(CYTHON_UNUSED PyObject *__pyx
   if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_python_factorial, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 13, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_codeobj__2 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cyfact_py, __pyx_n_s_python_factorial, 13, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 13, __pyx_L1_error)</span>
-</pre><pre class="cython line score-0">&#xA0;<span class="">14</span>:     """Python factorial function to be run in interpreter."""</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">14</span>:     """Just compiling normal Python"""</pre>
 <pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">15</span>:     ans = 2</pre>
 <pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_2);
   __pyx_v_ans = __pyx_int_2;
@@ -431,7 +431,105 @@ static PyObject *__pyx_pf_6cyfact_python_factorial(CYTHON_UNUSED PyObject *__pyx
 </pre><pre class="cython line score-0">&#xA0;<span class="">21</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">22</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">23</span>: @cython.cfunc</pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">24</span>: def cfunc_factorial(inp: cython.int) -&gt; cython.int:</pre>
+<pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">24</span>: def cfunc_pep526_factorial(inp: int) -&gt; int:</pre>
+<pre class='cython code score-6 '>static int __pyx_f_6cyfact_cfunc_pep526_factorial(PyObject *__pyx_v_inp) {
+  PyObject *__pyx_v_ans = 0;
+  PyObject *__pyx_v_i = 0;
+  int __pyx_r;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("cfunc_pep526_factorial", 0);
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("cyfact.cfunc_pep526_factorial", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_ans);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_i);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+</pre><pre class="cython line score-0">&#xA0;<span class="">25</span>:     """Compiled but with PEP526 type annotations"""</pre>
+<pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">26</span>:     ans: int = 2</pre>
+<pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_2);
+  __pyx_v_ans = __pyx_int_2;
+</pre><pre class="cython line score-0">&#xA0;<span class="">27</span>:     i: int</pre>
+<pre class="cython line score-0">&#xA0;<span class="">28</span>: </pre>
+<pre class="cython line score-57" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">29</span>:     for i in range(3, inp+1):</pre>
+<pre class='cython code score-57 '>  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_AddObjC</span>(__pyx_v_inp, __pyx_int_1, 1, 0, 0);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  __pyx_t_2 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_int_3);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_2, 0, __pyx_int_3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_t_1);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_2, 1, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_builtin_range, __pyx_t_2, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+  if (likely(<span class='py_c_api'>PyList_CheckExact</span>(__pyx_t_1)) || <span class='py_c_api'>PyTuple_CheckExact</span>(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_2); __pyx_t_3 = 0;
+    __pyx_t_4 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_2 = <span class='py_c_api'>PyObject_GetIter</span>(__pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)-&gt;tp_iternext;<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_4)) {
+      if (likely(<span class='py_c_api'>PyList_CheckExact</span>(__pyx_t_2))) {
+        if (__pyx_t_3 &gt;= <span class='py_macro_api'>PyList_GET_SIZE</span>(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS &amp;&amp; !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = <span class='py_macro_api'>PyList_GET_ITEM</span>(__pyx_t_2, __pyx_t_3); <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_1); __pyx_t_3++; if (unlikely(0 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 29, __pyx_L1_error)</span>
+        #else
+        __pyx_t_1 = <span class='py_macro_api'>PySequence_ITEM</span>(__pyx_t_2, __pyx_t_3); __pyx_t_3++;<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+        <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_3 &gt;= <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS &amp;&amp; !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_t_2, __pyx_t_3); <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_1); __pyx_t_3++; if (unlikely(0 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 29, __pyx_L1_error)</span>
+        #else
+        __pyx_t_1 = <span class='py_macro_api'>PySequence_ITEM</span>(__pyx_t_2, __pyx_t_3); __pyx_t_3++;<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)</span>
+        <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = <span class='py_c_api'>PyErr_Occurred</span>();
+        if (exc_type) {
+          if (likely(<span class='pyx_c_api'>__Pyx_PyErr_GivenExceptionMatches</span>(exc_type, PyExc_StopIteration))) <span class='py_c_api'>PyErr_Clear</span>();
+          else <span class='error_goto'>__PYX_ERR(0, 29, __pyx_L1_error)</span>
+        }
+        break;
+      }
+      <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    }
+    <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_i, __pyx_t_1);
+    __pyx_t_1 = 0;
+/* … */
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+</pre><pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">30</span>:         ans *= i</pre>
+<pre class='cython code score-6 '>    __pyx_t_1 = <span class='py_c_api'>PyNumber_InPlaceMultiply</span>(__pyx_v_ans, __pyx_v_i);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_ans, __pyx_t_1);
+    __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">31</span>: </pre>
+<pre class="cython line score-7" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">32</span>:     return ans</pre>
+<pre class='cython code score-7 '>  __pyx_t_5 = <span class='pyx_c_api'>__Pyx_PyInt_As_int</span>(__pyx_v_ans); if (unlikely((__pyx_t_5 == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 32, __pyx_L1_error)</span>
+  __pyx_r = __pyx_t_5;
+  goto __pyx_L0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">33</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">34</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">35</span>: @cython.cfunc</pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">36</span>: def cfunc_factorial(inp: cython.int) -&gt; cython.int:</pre>
 <pre class='cython code score-0 '>static int __pyx_f_6cyfact_cfunc_factorial(int __pyx_v_inp) {
   int __pyx_v_ans;
   int __pyx_v_i;
@@ -444,42 +542,94 @@ static PyObject *__pyx_pf_6cyfact_python_factorial(CYTHON_UNUSED PyObject *__pyx
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
-</pre><pre class="cython line score-0">&#xA0;<span class="">25</span>:     """Cython factorial function to be compiled."""</pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">26</span>:     ans: cython.int = 2</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">37</span>:     """Compiled with Cython types"""</pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">38</span>:     ans: cython.int = 2</pre>
 <pre class='cython code score-0 '>  __pyx_v_ans = 2;
-</pre><pre class="cython line score-0">&#xA0;<span class="">27</span>:     i: cython.int</pre>
-<pre class="cython line score-0">&#xA0;<span class="">28</span>: </pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">29</span>:     for i in range(3, inp+1):</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">39</span>:     i: cython.int</pre>
+<pre class="cython line score-0">&#xA0;<span class="">40</span>: </pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">41</span>:     for i in range(3, inp+1):</pre>
 <pre class='cython code score-0 '>  __pyx_t_1 = (__pyx_v_inp + 1);
   __pyx_t_2 = __pyx_t_1;
   for (__pyx_t_3 = 3; __pyx_t_3 &lt; __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
-</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">30</span>:         ans *= i</pre>
+</pre><pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">42</span>:         ans *= i</pre>
 <pre class='cython code score-0 '>    __pyx_v_ans = (__pyx_v_ans * __pyx_v_i);
   }
-</pre><pre class="cython line score-0">&#xA0;<span class="">31</span>: </pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">32</span>:     return ans</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">43</span>: </pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">44</span>:     return ans</pre>
 <pre class='cython code score-0 '>  __pyx_r = __pyx_v_ans;
   goto __pyx_L0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">33</span>: </pre>
-<pre class="cython line score-0">&#xA0;<span class="">34</span>: </pre>
-<pre class="cython line score-14" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">35</span>: def cython_factorial(inp):</pre>
-<pre class='cython code score-14 '>/* Python wrapper */
-static PyObject *__pyx_pw_6cyfact_3cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
-static char __pyx_doc_6cyfact_2cython_factorial[] = "Enable calls to compiled function.";
-static PyMethodDef __pyx_mdef_6cyfact_3cython_factorial = {"cython_factorial", (PyCFunction)__pyx_pw_6cyfact_3cython_factorial, METH_O, __pyx_doc_6cyfact_2cython_factorial};
-static PyObject *__pyx_pw_6cyfact_3cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+</pre><pre class="cython line score-0">&#xA0;<span class="">45</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">46</span>: </pre>
+<pre class="cython line score-16" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">47</span>: def pep526_factorial(inp):</pre>
+<pre class='cython code score-16 '>/* Python wrapper */
+static PyObject *__pyx_pw_6cyfact_3pep526_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
+static char __pyx_doc_6cyfact_2pep526_factorial[] = "Enable calls to compiled function.";
+static PyMethodDef __pyx_mdef_6cyfact_3pep526_factorial = {"pep526_factorial", (PyCFunction)__pyx_pw_6cyfact_3pep526_factorial, METH_O, __pyx_doc_6cyfact_2pep526_factorial};
+static PyObject *__pyx_pw_6cyfact_3pep526_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("cython_factorial (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cyfact_2cython_factorial(__pyx_self, ((PyObject *)__pyx_v_inp));
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("pep526_factorial (wrapper)", 0);
+  __pyx_r = __pyx_pf_6cyfact_2pep526_factorial(__pyx_self, ((PyObject *)__pyx_v_inp));
 
   /* function exit code */
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cyfact_2cython_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+static PyObject *__pyx_pf_6cyfact_2pep526_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+  PyObject *__pyx_r = NULL;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("pep526_factorial", 0);
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("cyfact.pep526_factorial", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+/* … */
+  __pyx_tuple__3 = <span class='py_c_api'>PyTuple_Pack</span>(1, __pyx_n_s_inp);<span class='error_goto'> if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 47, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__3);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__3);
+/* … */
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_6cyfact_3pep526_factorial, NULL, __pyx_n_s_cyfact);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_pep526_factorial, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 47, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_codeobj__4 = (PyObject*)<span class='pyx_c_api'>__Pyx_PyCode_New</span>(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cyfact_py, __pyx_n_s_pep526_factorial, 47, __pyx_empty_bytes);<span class='error_goto'> if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 47, __pyx_L1_error)</span>
+</pre><pre class="cython line score-0">&#xA0;<span class="">48</span>:     """Enable calls to compiled function."""</pre>
+<pre class="cython line score-8" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">49</span>:     return cfunc_pep526_factorial(inp)</pre>
+<pre class='cython code score-8 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  __pyx_t_1 = __pyx_f_6cyfact_cfunc_pep526_factorial(__pyx_v_inp); if (unlikely(__pyx_t_1 == ((int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 49, __pyx_L1_error)</span>
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">50</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">51</span>: </pre>
+<pre class="cython line score-14" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">52</span>: def cython_factorial(inp):</pre>
+<pre class='cython code score-14 '>/* Python wrapper */
+static PyObject *__pyx_pw_6cyfact_5cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp); /*proto*/
+static char __pyx_doc_6cyfact_4cython_factorial[] = "Enable calls to compiled function.";
+static PyMethodDef __pyx_mdef_6cyfact_5cython_factorial = {"cython_factorial", (PyCFunction)__pyx_pw_6cyfact_5cython_factorial, METH_O, __pyx_doc_6cyfact_4cython_factorial};
+static PyObject *__pyx_pw_6cyfact_5cython_factorial(PyObject *__pyx_self, PyObject *__pyx_v_inp) {
+  PyObject *__pyx_r = 0;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("cython_factorial (wrapper)", 0);
+  __pyx_r = __pyx_pf_6cyfact_4cython_factorial(__pyx_self, ((PyObject *)__pyx_v_inp));
+
+  /* function exit code */
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6cyfact_4cython_factorial(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_inp) {
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
   <span class='refnanny'>__Pyx_RefNannySetupContext</span>("cython_factorial", 0);
@@ -495,20 +645,20 @@ static PyObject *__pyx_pf_6cyfact_2cython_factorial(CYTHON_UNUSED PyObject *__py
   return __pyx_r;
 }
 /* … */
-  __pyx_tuple__3 = <span class='py_c_api'>PyTuple_Pack</span>(1, __pyx_n_s_inp);<span class='error_goto'> if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 35, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__3);
-  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__3);
+  __pyx_tuple__5 = <span class='py_c_api'>PyTuple_Pack</span>(1, __pyx_n_s_inp);<span class='error_goto'> if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 52, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple__5);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple__5);
 /* … */
-  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_6cyfact_3cython_factorial, NULL, __pyx_n_s_cyfact);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)</span>
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_6cyfact_5cython_factorial, NULL, __pyx_n_s_cyfact);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_cython_factorial, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 35, __pyx_L1_error)</span>
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_cython_factorial, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 52, __pyx_L1_error)</span>
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">36</span>:     """Enable calls to compiled function."""</pre>
-<pre class="cython line score-15" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">37</span>:     return cfunc_factorial(inp)</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">53</span>:     """Enable calls to compiled function."""</pre>
+<pre class="cython line score-15" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">54</span>:     return cfunc_factorial(inp)</pre>
 <pre class='cython code score-15 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_As_int</span>(__pyx_v_inp); if (unlikely((__pyx_t_1 == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 37, __pyx_L1_error)</span>
-  __pyx_t_2 = __pyx_f_6cyfact_cfunc_factorial(__pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 37, __pyx_L1_error)</span>
-  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)</span>
+  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyInt_As_int</span>(__pyx_v_inp); if (unlikely((__pyx_t_1 == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 54, __pyx_L1_error)</span>
+  __pyx_t_2 = __pyx_f_6cyfact_cfunc_factorial(__pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 54, __pyx_L1_error)</span>
+  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyInt_From_int</span>(__pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;

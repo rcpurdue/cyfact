@@ -28,7 +28,18 @@ def interpreter_factorial(inp):
     return ans
 
 
-def test(name, code, n=100000):
+def pep526_factorial(inp: int) -> int:
+    """Compiled but with PEP526 type annotations"""
+    ans: int = 2
+    i: int
+
+    for i in range(3, inp+1):
+        ans *= i
+
+    return ans
+
+
+def test(name, code, n=10000000):
     result = timeit(stmt=code, globals=globals(), number=n)
     print(f"{name}: {(result / n):.8f} seconds")
 
@@ -52,10 +63,14 @@ def compile():
 clean_up()
 compile()
 print(interpreter_factorial(TEST_VALUE)
+      == pep526_factorial(TEST_VALUE)
       == math.factorial(TEST_VALUE)
       == src.cyfact.python_factorial(TEST_VALUE)
-      == src.cyfact.cython_factorial(TEST_VALUE))
-test('Interpreted ', f'interpreter_factorial({TEST_VALUE})')
-test('Compiled    ', f'src.cyfact.python_factorial({TEST_VALUE})')
-test('Cython      ', f'src.cyfact.cython_factorial({TEST_VALUE})')
-test('Library     ', f'math.factorial({TEST_VALUE})')
+      == src.cyfact.cython_factorial(TEST_VALUE)
+      == src.cyfact.pep526_factorial(TEST_VALUE))
+test('Interpreted  ', f'interpreter_factorial({TEST_VALUE})')
+test('Intrp. PEP526', f'pep526_factorial({TEST_VALUE})')
+test('Compiled     ', f'src.cyfact.python_factorial({TEST_VALUE})')
+test('Comp. PEP526 ', f'src.cyfact.pep526_factorial({TEST_VALUE})')
+test('Cython       ', f'src.cyfact.cython_factorial({TEST_VALUE})')
+test('Library      ', f'math.factorial({TEST_VALUE})')
