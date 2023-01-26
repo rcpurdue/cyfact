@@ -7,6 +7,8 @@ References
 - Cython Docs
     - [(Latest) Pure Python Mode](https://cython.readthedocs.io/en/latest/src/tutorial/pure.html)
 - Integer
-    - Docs: "...[Python] int [maps to] cdef object..."
+    - Docs
+        - "annotating in Pure Python with int, long, and float Python types will be interpreted as Python object types"
+        - "...[Python] int [maps to] cdef object..."
     - [Cython bug comment](https://github.com/cython/cython/issues/4227)
         - "PEP 526...ambiguous Python types 'int' and 'long' are not evaluated - the 'cython.int' form must be used instead."

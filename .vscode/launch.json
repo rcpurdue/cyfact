@@ -5,10 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Compile & Test",
+            "name": "Compile",
             "type": "python",
             "request": "launch",
-            "program": "compile_and_test.py",
+            "program": "compile.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Test",
+            "type": "python",
+            "request": "launch",
+            "program": "test.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
