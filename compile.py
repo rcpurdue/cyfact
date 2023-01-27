@@ -18,4 +18,4 @@ for ff in ("*.c", "*.html"):
             pass
 
 os.chdir("src")
-setup(name="cyfactcomp", ext_modules=cythonize([Extension("cyfactcomp", ["cyfact.py"], )], annotate=True))
+setup(name="cytestcomp", ext_modules=cythonize([Extension("cytestcomp", ["cytest.py"], )], annotate=True))

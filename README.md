@@ -1,13 +1,13 @@
-# cyfact - Example code (factorial calculation) as intro to Cython
+# cyfact - Example code for intro to Cython's "pure Python" mode
 
 ## How to use
 - Run ```compile.py``` first:
     - Uses Cython to translate cyfact.py into cyfact.c
     - Creates "cyfactcomp" shared object (our own little library)
 - Then, run ```test.py```:
-    - Calls interpreted (Python) version of cyfact.py's ```factorial()```
-    - Calls compiled (C) version of cyfact.py's ```factorial()```
-    - Calls math library's ```factorial()``` for timing comparison
+    - Calls interpreted (Python) version of cyfact.py's ```factorial()``` and ``threshold`
+    - Calls compiled (C) version of cyfact.py's ```factorial()``` and ``threshold`
+    - Calls math library's ```factorial()``` an NumPy's ```where()`` for timing comparisons
 
 ## References
 - syegulalp
