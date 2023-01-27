@@ -1,13 +1,10 @@
 import math
-import logging
 from timeit import timeit
 
 from src import cyfact as intp  # Brings in cyfact.py
 from src import cyfactcomp as comp  # Brings in the .so
 
 TEST_VALUE = 12
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def test(name, code, n=10000000):

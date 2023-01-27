@@ -1,15 +1,12 @@
 import sys
 import os
 import glob
-import logging
 
-from setuptools import setup
-from setuptools import Extension
+from setuptools import setup, Extension
 from Cython.Build import cythonize
 
 
 sys.argv = ["compile.py", "build_ext", "--inplace"]
-logging.basicConfig(level=logging.DEBUG)
 
 for ff in ("*.c", "*.html"):
 
