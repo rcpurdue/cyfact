@@ -6,8 +6,8 @@ import cython as cy
 def factorial(inp: cy.int) -> cy.int:
     """Factorial, assume greater than 2"""
 
-    # NOTE Don't use Python integers here b/c Cython compiler would map them to objects (not C ints).
-    # NOTE Cython integers ("cy.int") map to Python int objects when run in regular Python interpreter (not compiled).
+    # NOTE Python integers not used here as Cython compiler would map them to C objects (not C ints).
+    #      But, when run in Python interpreter (not compiled), "cy.int" DOES map to Python integer.
 
     ans: cy.int = 2
     i: cy.int
