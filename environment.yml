@@ -1,0 +1,5 @@
+channels:
+  - defaults
+dependencies:
+  - cython=0.29.32
+  - numpy

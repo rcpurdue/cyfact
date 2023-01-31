@@ -1,5 +1,7 @@
 # cyfact - Example code for intro to Cython's "pure Python" mode
 
+NOTE: Not yet tested on Windows and Mac. Might work as-is (?)
+
 ## How to use
 - Run ```compile.py``` first:
     - Uses Cython to translate cyfact.py into cyfact.c
